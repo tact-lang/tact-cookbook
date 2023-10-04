@@ -19,56 +19,17 @@ contract HelloWorld {
 
 ### How to write a repeat loop
 
-Tact does not support traditional for loops, but its loop statements are equivalent and can easily implement the same things. Also note that Tact does not support break and continue statements in loops like some languages.
+Tact does not support traditional for loops, but its loop statements are equivalent and can easily implement the same functionality. Also, note that Tact does not support the use of break and continue statements in loops, unlike some other programming languages.
 
-The repeat loop statement input number must fit within an int32, otherwise an exception will be thrown.
-
-The condition of the while and until loop statements can be any boolean expression.
-
-Smart contracts consume gas for execution. The amount of gas is proportional to the number of iterations. The last example iterates too many times and reverts due to an out of gas exception.
+Please ensure that the input number for the repeat loop statement is within the range of an int32 datatype, as an exception will be thrown otherwise.
 
 ```
-contract Loops with Deployable {
 
-    init() {}
-
-    receive("loop1") {
-        let sum: Int = 0;
-        let i: Int = 0;
-        repeat (10) {               // repeat exactly 10 times
-            i = i + 1;
-            sum = sum + i;
-        }
-        dump(sum);
+    let sum: Int = 0;
+    let i: Int = 0;
+    repeat (10) {               // repeat exactly 10 times
+        i = i + 1;
+        sum = sum + i;
     }
-
-    receive("loop2") {
-        let sum: Int = 0;
-        let i: Int = 0;
-        while (i < 10) {            // loop while a condition is true
-            i = i + 1;
-            sum = sum + i;
-        }
-        dump(sum);
-    }
-
-    receive("loop3") {
-        let sum: Int = 0;
-        let i: Int = 0;
-        do {                        // loop until a condition is true
-            i = i + 1;
-            sum = sum + i;
-        } until (i >= 10);
-        dump(sum);
-    }
-
-    receive("out of gas") {
-        let i: Int = 0;
-        while (i < pow(10, 6)) {    // 1 million iterations is too much
-            i = i + 1;
-        }
-        dump(i);
-    }
-}
 
 ```
