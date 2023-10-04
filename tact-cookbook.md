@@ -17,6 +17,7 @@ contract HelloWorld {
 }
 ```
 
+## Slice
 ### How to determine if slice is empty
 
 `Slice` is considered *empty* if it has no stored `data` **and** no stored `references`.
