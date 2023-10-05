@@ -44,7 +44,6 @@ let slice_with_refs: Slice  = beginCell().
 // Returns `false`, because slice have any `refs`
 slice_with_refs.empty();
 
-
 // Create a slice with data and reference
 let slice_with_data_and_refs: Slice  = beginCell().
     storeUint(42, 8).
@@ -58,3 +57,4 @@ slice_with_data_and_refs.empty();
 - [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
 - [`dataEmpty()` in docs](https://docs.tact-lang.org/language/ref/cells#slicedataempty)
 - [`refsEmpty()` in docs](https://docs.tact-lang.org/language/ref/cells#slicerefsempty)
+- [`emptyCell()` in docs](https://docs.tact-lang.org/language/ref/cells#emptycell)
