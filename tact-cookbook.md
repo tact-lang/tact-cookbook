@@ -19,7 +19,7 @@ contract HelloWorld {
 ## Loops
 ### How to write a do until loop
 
-When we need the cycle to run at least once, we use `do until`.
+When we need the cycle to run at least once, we use `do-until`.
 
 ```tact
 // A variable to store the random number
@@ -33,11 +33,11 @@ do {
 dump("The loop is over!");
 ```
 
-> 💡 Useful links
-> 
-> ["Until loop" in docs](https://docs.tact-lang.org/language/guides/statements#until-loop)
-> ["Random" in docs](https://docs.tact-lang.org/language/ref/random#random)
-> [Loops in Tact-By-Example](https://tact-by-example.org/04-loops)
+💡 Useful links
+ 
+- [`do-until` in docs](https://docs.tact-lang.org/language/guides/statements#until-loop)
+- [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
+- [`tact-by-example.org` @Loops](https://tact-by-example.org/04-loops)
 
 ## Slice
 ### How to determine if slice is empty
