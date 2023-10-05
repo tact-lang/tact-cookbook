@@ -6,13 +6,13 @@ Compared to the FunC Documentation, this article is more focused on everyday tas
 
 ## Basics
 ### How to send a message with the entire balance
-If we need to send the entire balance of the smart contract, then, in this case, we need to use send `mode 128`. Another way we can use the mode `SendRemainingBalance`, which means the same thing.
+If we need to send the entire balance of the smart contract, then, in this case, we need to use send mode `SendRemainingBalance`. Another way we can use the `mode 128`, which means the same thing.
 
 ```
 send(SendParameters{
     to: ctx.sender, 
     value: 0, 
-    mode: 128,
+    mode: SendRemainingBalance, // or mode: 128
     bounce: true
 });
 ```
