@@ -33,7 +33,7 @@ let slice: Slice = empty_cell.asSlice();
 slice.empty();
 
 // Create a cell with bits and references
-let cell_with_data_and_refs: Cell  = beginCell().
+let cell_with_data_and_refs: Cell = beginCell().
     storeUint(42, 8).
     storeRef(emptyCell()).
     endCell();
