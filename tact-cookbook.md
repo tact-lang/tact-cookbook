@@ -21,15 +21,20 @@ contract HelloWorld {
 
 When we need the cycle to run at least once, we use `do until`.
 
-```tact 
-let flag: Bool = false;
+```tact
+// A variable to store the random number
+let num: Int;
 
+// A do until loop that repeats until num is equal to 5
 do {
-    // do something even flag is false
-} until (flag);
+  num = random(0, 9);
+} until (num == 5);
+
+dump("The loop is over!");
 ```
 
 > 💡 Useful links
 > 
 > ["Until loop" in docs](https://docs.tact-lang.org/language/guides/statements#until-loop)
+> ["Random" in docs](https://docs.tact-lang.org/language/ref/random#random)
 > [Loops in Tact-By-Example](https://tact-by-example.org/04-loops)
