@@ -16,3 +16,8 @@ send(SendParameters{
     bounce: true
 });
 ```
+
+Useful links:
+
+https://docs.ton.org/develop/func/cookbook#how-to-send-a-message-with-the-entire-balance
+https://docs.tact-lang.org/language/ref/message-modes
