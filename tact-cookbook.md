@@ -24,56 +24,37 @@ contract HelloWorld {
 
 Use `empty()` method to check if `slice` is empty.
 
-To check if slice `data` is empty, use `dataEmpty()` method.
-
-To check if slice `refs` is empty, use `refsEmpty()` method.
-
 ```tact
 // Create an empty slice with no data and no refs
 let empty_slice: Slice = emptyCell().asSlice();
-
-empty_slice.dataEmpty(); // returns `true`
-empty_slice.refsEmpty(); // returns `true`
-empty_slice.empty();     // returns `true` 
-
+// Returns `true`, because slice doesn't have any `bits` and `refs`
+empty_slice.empty();
 
 // Create a slice with some data
 let slice_with_data: Slice = beginCell().
     storeUint(42, 8).
     asSlice();
-
-slice_with_data.dataEmpty(); // returns `false`
-slice_with_data.refsEmpty(); // returns `true`
-slice_with_data.empty();     // returns `false` 
-
+// Returns `false`, because slice have any `data`
+slice_with_data.empty();
 
 // Create a slice with reference to empty cell
 let slice_with_refs: Slice  = beginCell().
     storeRef(emptyCell()).
     asSlice();
-
-slice_with_refs.dataEmpty(); // returns `true`
-slice_with_refs.refsEmpty(); // returns `false`
-slice_with_refs.empty();     // returns `false` 
+// Returns `false`, because slice have any `refs`
+slice_with_refs.empty();
 
 
+// Create a slice with data and reference
 let slice_with_data_and_refs: Slice  = beginCell().
     storeUint(42, 8).
     storeRef(emptyCell()).
     asSlice();
-
-slice_with_data_and_refs.dataEmpty(); // returns `false`
-slice_with_data_and_refs.refsEmpty(); // returns `false`
-slice_with_data_and_refs.empty();     // returns `false` 
+// Returns `false`, because slice have any `data` and `refs`
+slice_with_data_and_refs.empty(); 
 ```
 
 💡 Useful links
-
 - [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
 - [`dataEmpty()` in docs](https://docs.tact-lang.org/language/ref/cells#slicedataempty)
 - [`refsEmpty()` in docs](https://docs.tact-lang.org/language/ref/cells#slicerefsempty)
-
-👀 See also
-
-- ["Get number of references" in docs](https://docs.tact-lang.org/language/ref/cells#slicerefs)
-- ["Get number of data bits" in docs](https://docs.tact-lang.org/language/ref/cells#slicebits)
