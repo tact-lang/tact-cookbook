@@ -6,18 +6,19 @@ Compared to the FunC Documentation, this article is more focused on everyday tas
 
 ## Basics
 ### How to send a message with the entire balance
-If we need to send the entire balance of the smart contract, then, in this case, we need to use send mode 128. Another way we can use the mode SendRemainingBalance, which means the same thing.
+If we need to send the entire balance of the smart contract, then, in this case, we need to use send `mode 128`. Another way we can use the mode `SendRemainingBalance`, which means the same thing.
 
 ```
 send(SendParameters{
     to: ctx.sender, 
     value: 0, 
-    mode: 128 // or SendRemainingBalance
+    mode: 128,
     bounce: true
 });
 ```
 
-Useful links:
-
-https://docs.ton.org/develop/func/cookbook#how-to-send-a-message-with-the-entire-balance
-https://docs.tact-lang.org/language/ref/message-modes
+> 💡 Useful links
+> 
+> ["Sending messages" in docs](https://docs.tact-lang.org/language/guides/send#send-message)
+>
+> ["Message modes" in docs](https://docs.tact-lang.org/language/ref/message-modes)
