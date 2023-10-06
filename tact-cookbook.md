@@ -45,6 +45,36 @@ if (value > 9000) {
     // do something else
 }
 ```
+### How to convert int to string
+
+```tact
+let i1: Int = -12345;
+let i2: Int = 6780000000; // coins = ton("6.78")
+
+// Convert the Int value to a String.
+// The value of s1 is "-12345".
+let s1: String = i1.toString();
+
+// Convert the Fixed Float value represented as an Int to a String.
+// The parameter `digits` (3 in this example) determines the precision of the float number.
+// The valid range for `digits` is 0 <= digits < 77.
+// The value of s2 is "-12.345".
+let s2: String = i1.toFloatString(3);
+
+// Convert the nanoToncoin Int value to a String representing a float number of Toncoins and return it.
+// The value of s3 is "6.78".
+let s3: String = i2.toCoinsString();
+```
+
+> 💡 Useful links
+>
+> [`Int.toString` in docs](https://docs.tact-lang.org/language/ref/strings#inttostring)
+>
+> [`Int.toFloatString` in docs](https://docs.tact-lang.org/language/ref/strings#inttofloatstring)
+>
+> [`Int.toCoinsString` in docs](https://docs.tact-lang.org/language/ref/strings#inttocoinsstring)
+>
+> [`Strings` in Tact-By-Example](https://tact-by-example.org/02-strings)
 
 ## Slice
 ### How to determine if slice is empty
