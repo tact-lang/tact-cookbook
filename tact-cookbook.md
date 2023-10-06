@@ -45,6 +45,26 @@ if (value > 9000) {
     // do something else
 }
 ```
+## Cell
+## How to determine if cells are equal
+
+We can easily determine cell equality based on their hash.
+
+```tact
+let a: Cell = beginCell()
+    .storeUint(123, 16)
+    .endCell();
+
+let b: Cell = beginCell()
+    .storeUint(123, 16)
+    .endCell();
+
+let areCellsEqual: Bool = a.hash() == b.hash(); // true
+```
+
+> 💡 Useful links
+>
+> [`Cell.hash` in docs](https://docs.tact-lang.org/language/ref/cells#cellhash)
 
 ## Slice
 ### How to determine if slice is empty
