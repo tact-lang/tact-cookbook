@@ -45,6 +45,7 @@ if (value > 9000) {
     // do something else
 }
 ```
+
 ## Cell
 ## How to determine if cells are equal
 
