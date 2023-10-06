@@ -87,3 +87,18 @@ slice_with_data_and_refs.empty();
 - [`dataEmpty()` in docs](https://docs.tact-lang.org/language/ref/cells#slicedataempty)
 - [`refsEmpty()` in docs](https://docs.tact-lang.org/language/ref/cells#slicerefsempty)
 - [`emptyCell()` in docs](https://docs.tact-lang.org/language/ref/cells#emptycell)
+
+## How to determine if slices are equal
+
+We can easily determine if slices are equal by comparing their hash values.
+
+```tact
+let a: Slice = "Some text".asSlice();
+let b: Slice = "Some text".asSlice();
+
+let areSlicesEqual: Bool = a.hash() == b.hash(); // true
+```
+
+> 💡 Useful links
+>
+> [`Slice.hash` in docs](https://docs.tact-lang.org/language/ref/cells#slicehash)
