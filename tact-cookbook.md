@@ -46,6 +46,25 @@ if (value > 9000) {
 }
 ```
 
+### How to get current time
+
+Use the `now()` method to obtain the current standard [Unix time](https://en.wikipedia.org/wiki/Unix_time), which returns the number of seconds since 1 January 1970.
+
+If you need to store the time in state or encode it in a message, use `Int as uint32`.
+
+```tact
+let currentTime: Int = now();
+if (currentTime > 1672080143) {
+    // do something
+}
+```
+
+> 💡 Useful links
+>
+> ["now()" in docs](https://docs.tact-lang.org/language/ref/common#now)
+>
+> ["Current Time" in Tact-By-Example](https://tact-by-example.org/04-current-time)
+
 ## Slice
 ### How to determine if slice is empty
 
