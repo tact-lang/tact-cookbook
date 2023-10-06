@@ -17,43 +17,28 @@ contract HelloWorld {
 }
 ```
 
-## Loops
-### How to write a while loop
+### How to throw errors
 
-While is useful when we do not know how often to perform a particular action.For example, there is a sickness spreading in our country, and we want to calculate how many days it would take for the population to die off.
-
+The `throw` function in a contract is useful when we do not know how often to perform a particular action, as it allows intentional exception or error handling, leading to the termination of the current transaction and reverting any state changes made during that transaction.
 
 ```tact
-// First, we define a constant variable called POPULATION to store the population size.
-const POPULATION: Int = 42;
+let number: Int = 198;
 
-// Next, we create two variables to keep track of the number of newly sick and total sick people.
-let newly_sick: Int = 0;
-let total_sick: Int = 0;
+//the error will be triggered anyway
+throw(36);
 
-// We will now start a loop to continue until the total number of sick people is less than the population size.
-while (total_sick < POPULATION) {   
+//the error will be triggered only if the number is greater than 50
+nativeThrowWhen(35, number > 50);
 
-    // Every day, the total number of new sick people doubles.
-    newly_sick = newly_sick * 2;
-    
-    // We update the total number of sick people by adding the newly sick people.
-    total_sick = total_sick + newly_sick;
-
-    // We increment the number of days.
-    days = days + 1;
-}
-
-// We print the number of days it took for the entire population to get sick.
-dump(days)
+//the error will be triggered only if the number is NOT EQUAL to 198
+nativeThrowUnless(39, number == 198);
 
 ```
 
 💡 Useful links
 
-- [`while-loop` in docs](https://docs.tact-lang.org/language/guides/statements#while-loop)
-- [`tact-by-example.org` @Loops](https://tact-by-example.org/04-loops)
-- [`constants` in docs](https://docs.tact-lang.org/language/guides/constants)
+- [`throw()` in docs](https://docs.tact-lang.org/language/ref/advanced#throw)
+- [`tact-by-example.org` @errors](https://tact-by-example.org/03-errors)
 
 ## Slice
 ### How to determine if slice is empty
