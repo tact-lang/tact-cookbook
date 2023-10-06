@@ -5,6 +5,7 @@ The core reason for creating the Tact Cookbook is to collect all the experience 
 Compared to the FunC Documentation, this article is more focused on everyday tasks every FunC developer resolve during the development of smart contracts.
 
 ## Basics
+
 ### How to write a Hello World smart contract
 
 ```
@@ -12,8 +13,36 @@ contract HelloWorld {
 
     get fun greeting(): String {
         return "hello world";
-    }        
+    }
 
+}
+```
+
+### How to write an 'if' statement in Tact
+
+Tact supports `if` statements in a similar syntax to most programming languages. 
+The condition of the statement can be any boolean expression.
+
+```
+
+value: Int = 9001;
+
+if (value > 10) {
+    // do something
+}
+
+if (value > 100) {
+    // do something
+} else {
+    // do something else
+}
+
+if (value > 9000) {
+    // do something
+} else if (value > 500) {
+    // do another thing
+} else {
+    // do something else
 }
 ```
 
