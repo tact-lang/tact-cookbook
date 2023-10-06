@@ -17,28 +17,24 @@ contract HelloWorld {
 }
 ```
 
-### How to throw errors
+### How to generate a random number  
 
-The `throw` function in a contract is useful when we do not know how often to perform a particular action, as it allows intentional exception or error handling, leading to the termination of the current transaction and reverting any state changes made during that transaction.
 
 ```tact
-let number: Int = 198;
+// Declare a variable to store the random number
+let number: Int;
 
-//the error will be triggered anyway
-throw(36);
+// Generate a new random number, which is an unsigned 256-bit integer
+number = randomInt();
 
-//the error will be triggered only if the number is greater than 50
-nativeThrowWhen(35, number > 50);
-
-//the error will be triggered only if the number is NOT EQUAL to 198
-nativeThrowUnless(39, number == 198);
-
+// Generate a random number between 1 and 12 
+number = random(1, 12);
 ```
 
 💡 Useful links
+- [`randomInt()` in docs](https://docs.tact-lang.org/language/ref/random#randomInt)
+- [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
 
-- [`throw()` in docs](https://docs.tact-lang.org/language/ref/advanced#throw)
-- [`tact-by-example.org` @errors](https://tact-by-example.org/03-errors)
 
 ## Slice
 ### How to determine if slice is empty
