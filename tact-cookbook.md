@@ -17,27 +17,6 @@ contract HelloWorld {
 
 }
 ```
-## Loops
-### How to write a do until loop
-
-When we need the cycle to run at least once, we use `do-until`.
-
-```tact
-let num: Int;               // A variable to store the random number
-
-// A do until loop that repeats until num is equal to 5
-do {
-  num = random(0, 9);       // get a random number between 0 and 9
-} until (num == 5);         // stop loop if num is equal to 5
-
-dump("The loop is over!");
-```
-
-💡 Useful links
- 
-- [`do-until` in docs](https://docs.tact-lang.org/language/guides/statements#until-loop)
-- [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
-- [`tact-by-example.org` @Loops](https://tact-by-example.org/04-loops)
 
 ### How to write an 'if' statement in Tact
 
@@ -45,8 +24,7 @@ Tact supports `if` statements in a similar syntax to most programming languages.
 The condition of the statement can be any boolean expression.
 
 ```
-
-value: Int = 9001;
+let value: Int = 9001;
 
 if (value > 10) {
     // do something
@@ -67,7 +45,45 @@ if (value > 9000) {
 }
 ```
 
+## Loops
+
+### How to write a repeat loop
+
+Please make sure the input number for the repeat loop statement is within the range of an int32 data type, as an exception will be thrown otherwise.
+
+```
+let sum: Int = 0;
+let i: Int = 0;
+
+repeat (10) {               // repeat exactly 10 times
+    i = i + 1;
+    sum = sum + i;
+}
+```
+
+### How to write a do until loop
+
+When we need the cycle to run at least once, we use `do-until`.
+
+```tact
+let num: Int;               // A variable to store the random number
+
+// A do until loop that repeats until num is equal to 5
+do {
+    num = random(0, 9);       // get a random number between 0 and 9
+} until (num == 5);         // stop loop if num is equal to 5
+
+dump("The loop is over!");
+```
+
+💡 Useful links
+ 
+- [`do-until` in docs](https://docs.tact-lang.org/language/guides/statements#until-loop)
+- [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
+- [`tact-by-example.org` @Loops](https://tact-by-example.org/04-loops)
+
 ## Slice
+
 ### How to determine if slice is empty
 
 `Slice` is considered *empty* if it has no stored `data` **and** no stored `references`.
