@@ -94,6 +94,32 @@ dump("The loop is over!");
 - [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
 - [`tact-by-example.org` @Loops](https://tact-by-example.org/04-loops)
 
+## Strings
+
+### How to convert string to int
+
+```tact
+// Dangerously casts string as slice for parsing. Use it only if you know what you are doing.
+// Try to parse the string as an slice
+let string: Slice = "26052021".asSlice();
+
+// A variable to store the number
+let number: Int = 0;
+
+while (!string.empty()) {                   // A loop until slice has bytes
+    let char: Int = string.loadUint(8);     // load slice bytes
+    number = (number * 10) + (char - 48);   // we use ASCII table to get number
+}
+
+dump(number);
+```
+
+💡 Useful links
+- [`while()` in docs](https://docs.tact-lang.org/language/guides/statements#while-loop)
+- [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
+- [`loadUint()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceloaduint)
+- [`String.asSlice()` in docs](https://docs.tact-lang.org/language/ref/strings#stringasslice)
+
 ## Slice
 
 ### How to determine if slice is empty
