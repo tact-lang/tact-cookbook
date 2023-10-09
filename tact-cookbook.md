@@ -17,6 +17,17 @@ contract HelloWorld {
 
 }
 ```
+
+### How to send a simple message
+
+```tact
+send(SendParameters{
+    to: destinationAddress,
+    value: ton("0.01"),// attached amount of Tons to send
+    body: "Hello from Tact!".asComment() // comment (optional)
+});
+```
+
 ## Loops
 ### How to write a do until loop
 
