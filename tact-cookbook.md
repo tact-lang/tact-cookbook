@@ -68,6 +68,7 @@ while (i < 10) {
     i = i + 1;
 }
 ```
+
 💡 Useful links
 
 - ["While loop" in docs](https://docs.tact-lang.org/language/guides/statements#while-loop)
@@ -227,3 +228,27 @@ if (currentTime > 1672080143) {
 
 - ["now()" in docs](https://docs.tact-lang.org/language/ref/common#now)
 - ["Current Time" in Tact-By-Example](https://tact-by-example.org/04-current-time)
+
+### How to throw errors
+
+The throw function in a contract is useful when we don't know how often to perform a specific action.
+
+It allows intentional exception or error handling, which leads to the termination of the current transaction and reverts any state changes made during that transaction.
+
+```tact
+let number: Int = 198;
+
+// the error will be triggered anyway
+throw(36);
+
+// the error will be triggered only if the number is greater than 50
+nativeThrowWhen(35, number > 50);
+
+// the error will be triggered only if the number is NOT EQUAL to 198
+nativeThrowUnless(39, number == 198);
+```
+
+💡 Useful links
+
+- [`throw()` in docs](https://docs.tact-lang.org/language/ref/advanced#throw)
+- [Errors in Tact-By-Example](https://tact-by-example.org/03-errors)
