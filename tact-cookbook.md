@@ -61,6 +61,20 @@ repeat (10) {               // repeat exactly 10 times
 }
 ```
 
+### How to write a while loop 
+
+```
+let i: Int = 0;
+
+while (i < 10) {
+    i = i + 1;
+}
+```
+💡 Useful links
+
+- ["While loop" in docs](https://docs.tact-lang.org/language/guides/statements#while-loop)
+- [Loops in Tact-By-Example](https://tact-by-example.org/04-loops)
+
 ### How to write a do until loop
 
 When we need the cycle to run at least once, we use `do-until`.
@@ -70,7 +84,7 @@ let num: Int;               // A variable to store the random number
 
 // A do until loop that repeats until num is equal to 5
 do {
-    num = random(0, 9);       // get a random number between 0 and 9
+    num = random(0, 9);     // get a random number between 0 and 9
 } until (num == 5);         // stop loop if num is equal to 5
 
 dump("The loop is over!");
@@ -144,6 +158,7 @@ let slice: Slice = cell_with_data_and_refs.asSlice();
 slice.empty();
 ```
 💡 Useful links
+
 - [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
 - [`dataEmpty()` in docs](https://docs.tact-lang.org/language/ref/cells#slicedataempty)
 - [`refsEmpty()` in docs](https://docs.tact-lang.org/language/ref/cells#slicerefsempty)
