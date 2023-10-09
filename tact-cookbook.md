@@ -103,6 +103,16 @@ let slice_with_data_and_refs: Slice  = beginCell().
 slice_with_data_and_refs.empty(); 
 ```
 
+### How to determine if a slice has no refs (but may have bits)
+
+```
+let slice_with_data: Slice = beginCell().
+    storeUint(0, 1).
+    asSlice(); // slice with data but without refs
+let refsCount: Int = slice_with_data.refs(); // 0
+let hasRefs: Bool = slice_with_data.refsEmpty(); // true
+```
+
 ## Cell
 
 ### How to determine if a cell is empty
