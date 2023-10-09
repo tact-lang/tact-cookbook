@@ -10,11 +10,9 @@ Compared to the FunC Documentation, this article is more focused on everyday tas
 
 ```
 contract HelloWorld {
-
     get fun greeting(): String {
         return "hello world";
-    }
-
+    }        
 }
 ```
 
@@ -157,6 +155,7 @@ let slice: Slice = cell_with_data_and_refs.asSlice();
 // Returns `false`, because `slice` has both data and refs
 slice.empty();
 ```
+
 💡 Useful links
 
 - [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
@@ -165,3 +164,23 @@ slice.empty();
 - [`emptyCell()` in docs](https://docs.tact-lang.org/language/ref/cells#emptycell)
 - [`beginCell()` in docs](https://docs.tact-lang.org/language/ref/cells#begincell)
 - [`endCell()` in docs](https://docs.tact-lang.org/language/ref/cells#builderendcell)
+
+## Sending messages
+
+### How to send a message with the entire balance
+
+If we need to send the whole balance of the smart contract, then we should use the `SendRemainingBalance` send mode. Alternatively, we can use `mode 128`, which has the same meaning.
+
+```
+send(SendParameters{
+    to: ctx.sender, 
+    value: 0, 
+    mode: SendRemainingBalance, // or mode: 128
+    bounce: true
+});
+```
+
+💡 Useful links
+ 
+- ["Sending messages" in docs](https://docs.tact-lang.org/language/guides/send#send-message)
+- ["Message modes" in docs](https://docs.tact-lang.org/language/ref/message-modes)
