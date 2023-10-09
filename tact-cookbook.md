@@ -92,33 +92,7 @@ dump("The loop is over!");
  
 - [`do-until` in docs](https://docs.tact-lang.org/language/guides/statements#until-loop)
 - [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
-- [`tact-by-example.org` @Loops](https://tact-by-example.org/04-loops)
-
-## Strings
-
-### How to convert string to int
-
-```tact
-// Dangerously casts string as slice for parsing. Use it only if you know what you are doing.
-// Try to parse the string as an slice
-let string: Slice = "26052021".asSlice();
-
-// A variable to store the number
-let number: Int = 0;
-
-while (!string.empty()) {                   // A loop until slice has bytes
-    let char: Int = string.loadUint(8);     // load slice bytes
-    number = (number * 10) + (char - 48);   // we use ASCII table to get number
-}
-
-dump(number);
-```
-
-💡 Useful links
-- [`while()` in docs](https://docs.tact-lang.org/language/guides/statements#while-loop)
-- [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
-- [`loadUint()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceloaduint)
-- [`String.asSlice()` in docs](https://docs.tact-lang.org/language/ref/strings#stringasslice)
+- [Loops in Tact-By-Example](https://tact-by-example.org/04-loops)
 
 ## Slice
 
@@ -210,3 +184,46 @@ send(SendParameters{
  
 - ["Sending messages" in docs](https://docs.tact-lang.org/language/guides/send#send-message)
 - ["Message modes" in docs](https://docs.tact-lang.org/language/ref/message-modes)
+
+### How to convert string to int
+
+```tact
+// Dangerously casts string as slice for parsing. Use it only if you know what you are doing.
+// Try to parse the string as an slice
+let string: Slice = "26052021".asSlice();
+
+// A variable to store the number
+let number: Int = 0;
+
+while (!string.empty()) {                   // A loop until slice has bytes
+    let char: Int = string.loadUint(8);     // load slice bytes
+    number = (number * 10) + (char - 48);   // we use ASCII table to get number
+}
+
+dump(number);
+```
+
+💡 Useful links
+- [`while()` in docs](https://docs.tact-lang.org/language/guides/statements#while-loop)
+- [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
+- [`loadUint()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceloaduint)
+- [`String.asSlice()` in docs](https://docs.tact-lang.org/language/ref/strings#stringasslice)
+
+### How to get current time
+
+Use the `now()` method to obtain the current standard [Unix time](https://en.wikipedia.org/wiki/Unix_time).
+
+If you need to store the time in state or encode it in a message, use `Int as uint32`.
+
+```tact
+let currentTime: Int = now();
+
+if (currentTime > 1672080143) {
+    // do something
+}
+```
+
+💡 Useful links
+
+- ["now()" in docs](https://docs.tact-lang.org/language/ref/common#now)
+- ["Current Time" in Tact-By-Example](https://tact-by-example.org/04-current-time)
