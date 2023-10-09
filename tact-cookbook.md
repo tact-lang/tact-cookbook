@@ -166,6 +166,26 @@ slice.empty();
 - [`beginCell()` in docs](https://docs.tact-lang.org/language/ref/cells#begincell)
 - [`endCell()` in docs](https://docs.tact-lang.org/language/ref/cells#builderendcell)
 
+### How to determine if cells are equal
+
+We can easily determine cell equality based on their hash.
+
+```tact
+let a: Cell = beginCell()
+    .storeUint(123, 16)
+    .endCell();
+
+let b: Cell = beginCell()
+    .storeUint(123, 16)
+    .endCell();
+
+let areCellsEqual: Bool = a.hash() == b.hash(); // true
+```
+
+💡 Useful links
+
+- [`Cell.hash` in docs](https://docs.tact-lang.org/language/ref/cells#cellhash)
+
 ## Sending messages
 
 ### How to send a message with the entire balance
