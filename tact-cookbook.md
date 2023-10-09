@@ -16,6 +16,28 @@ contract HelloWorld {
 }
 ```
 
+## Loops
+### How to write a do until loop
+
+When we need the cycle to run at least once, we use `do-until`.
+
+```tact
+let num: Int;               // A variable to store the random number
+
+// A do until loop that repeats until num is equal to 5
+do {
+  num = random(0, 9);       // get a random number between 0 and 9
+} until (num == 5);         // stop loop if num is equal to 5
+
+dump("The loop is over!");
+```
+
+💡 Useful links
+ 
+- [`do-until` in docs](https://docs.tact-lang.org/language/guides/statements#until-loop)
+- [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
+- [`tact-by-example.org` @Loops](https://tact-by-example.org/04-loops)
+
 ### How to write an 'if' statement in Tact
 
 Tact supports `if` statements in a similar syntax to most programming languages. 
@@ -187,6 +209,16 @@ let areCellsEqual: Bool = a.hash() == b.hash(); // true
 - [`Cell.hash` in docs](https://docs.tact-lang.org/language/ref/cells#cellhash)
 
 ## Sending messages
+
+### How to send a simple message
+
+```tact
+send(SendParameters{
+    to: destinationAddress,
+    value: ton("0.01"), // attached amount of Tons to send
+    body: "Hello from Tact!".asComment() // comment (optional)
+});
+```
 
 ### How to send a message with the entire balance
 
