@@ -249,6 +249,24 @@ if (currentTime > 1672080143) {
 - ["now()" in docs](https://docs.tact-lang.org/language/ref/common#now)
 - ["Current Time" in Tact-By-Example](https://tact-by-example.org/04-current-time)
 
+
+### How to generate a random number  
+
+```tact
+// Declare a variable to store the random number
+let number: Int;
+
+// Generate a new random number, which is an unsigned 256-bit integer
+number = randomInt();
+
+// Generate a random number between 1 and 12 
+number = random(1, 12);
+```
+
+💡 Useful links
+- [`randomInt()` in docs](https://docs.tact-lang.org/language/ref/random#randomInt)
+- [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
+
 ### How to throw errors
 
 The throw function in a contract is useful when we don't know how often to perform a specific action.
