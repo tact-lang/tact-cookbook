@@ -244,6 +244,30 @@ while (!string.empty()) {                   // A loop until slice has bytes
 dump(number);
 ```
 
+### How to convert int to string
+
+```tact
+let number: Int = 261119911;
+let string: StringBuilder = beginString();
+let chars: map<Int, Int> = null;
+let digits: Int = 0;
+
+do {
+    let r: Int = number % 10;
+    number = number / 10;
+    chars.set(digits, r);
+    digits = digits + 1;
+} until (number == 0);
+
+while (digits > 0) {
+    digits = digits - 1;
+    let char: Int = chars.get(digits)!!;
+    string.append(char.toString());
+}
+
+dump(string.toString())
+```
+
 💡 Useful links
 - [`while()` in docs](https://docs.tact-lang.org/language/guides/statements#while-loop)
 - [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
