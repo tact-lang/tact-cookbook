@@ -142,6 +142,24 @@ let refsCount: Int = slice_with_data.refs(); // 0
 let hasRefs: Bool = slice_with_data.refsEmpty(); // true
 ```
 
+### How to determine if slices are equal
+
+```tact
+fun areSlicesEqual(a: Slice, b: Slice) : Bool {
+        return a.hash() == b.hash();
+}
+
+let firstSlice: Slice = "A".asSlice();
+let secondSlice: Slice = "A".asSlice();
+
+let result: Bool = areSlicesEqual(firstSlice, secondSlice); // Returns `true`
+dump(result);
+```
+
+💡 Useful links
+
+- [`String.asSlice()` in docs](https://docs.tact-lang.org/language/ref/strings#stringasslice)
+
 ## Cell
 
 ### How to determine if a cell is empty
