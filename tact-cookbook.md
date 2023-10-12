@@ -139,7 +139,17 @@ let slice_with_data: Slice = beginCell().
     storeUint(0, 1).
     asSlice(); // create a slice with data but without refs
 let refsCount: Int = slice_with_data.refs(); // 0
-let hasRefs: Bool = slice_with_data.refsEmpty(); // true
+let hasNoRefs: Bool = slice_with_data.refsEmpty(); // true
+```
+
+### How to determine if a slice has no data (no bits, but may have refs)
+
+```tact
+let slice_with_data: Slice = beginCell().
+    storeRef(emptyCell()).
+    asSlice(); // create a slice with ref but without data
+let bitsCount: Int = slice_with_data.bits(); // 0
+let hasNoData: Bool = slice_with_data.dataEmpty(); // true
 ```
 
 ## Cell
