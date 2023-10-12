@@ -310,3 +310,42 @@ nativeThrowUnless(39, number == 198);
 
 - [`throw()` in docs](https://docs.tact-lang.org/language/ref/advanced#throw)
 - [Errors in Tact-By-Example](https://tact-by-example.org/03-errors)
+
+### How to calculate NFT item address by its index
+You should have Tact or FunC code of nftItem and collection.
+
+Tact:
+```tact
+
+get fun getNftItemInit(item_index: Int): StateInit {
+// Arguments for NftItem may vary, depending on contract
+        return initOf NftItem(collectionAddress, item_index, self.owner_address, self.collection_content);
+}
+
+let itemIndex: Int = 0; // put your index
+let itemInit: StateInit = self.getNftItemInit(itemIndex);
+let itemAddress: Address = contractAddress(nft_init);
+```
+
+FunC(may also vary depending on collection's deploy_item() function:
+```tact
+fun getNftItemInit(item_index: Int): StateInit {
+        let data: Cell = beginCell().storeUint(item_index,64).storeSlice(self.nFTContractAddress.asSlice()).endCell();
+        let itemInit: StateInit = StateInit{
+            data: data,
+            code: self.nftItemCode
+        }; 
+        return itemInit;
+    }
+let itemIndex: Int = 0; // put your index
+let itemAddress: Address = contractAddress(self.getNftItemInit(itemIndex));           
+```
+
+💡 Useful links
+
+- [`initOf()` in docs](https://docs.tact-lang.org/language/guides/statements#initof)
+- [`contractaddress()` in docs](https://docs.tact-lang.org/language/ref/common#contractaddress)
+- [ example Tact collection and item contracts on github](https://github.com/howardpen9/nft-template-in-tact/blob/tutorial/sources/contract.tact)
+- [ example Func collection and item contracts on github](https://github.com/Cosmodude/TAP/tree/main/contracts)
+
+
