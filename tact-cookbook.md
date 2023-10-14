@@ -260,6 +260,32 @@ dump(number);
 - [`loadUint()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceloaduint)
 - [`String.asSlice()` in docs](https://docs.tact-lang.org/language/ref/strings#stringasslice)
 
+### How to convert int to string
+
+```tact
+let number: Int = 261119911;
+
+// Converting the [number] to String
+let numberString: String = number.toString();
+
+// Converting the [number] to Float String
+// passed argument `3` is is a exponentiation parameter of expression 10^(-3) that will be used for computing float number. This parameter required to be `0 <= digits < 77`
+let floatString: String = number.toFloatString(3);
+
+// Converting the [number] as coins to human readable Strign
+let coinsString: String = number.toCoinsString();
+
+dump(numberString); // "261119911"
+dump(floatString); // "261119.911"
+dump(coinsString); // "0.261119911"
+```
+
+💡 Useful links
+
+- [`Int.toString` in docs](https://docs.tact-lang.org/language/ref/strings#inttostring)
+- [`Int.toFloatString` in docs](https://docs.tact-lang.org/language/ref/strings#inttofloatstring)
+- [`Int.toCoinsString` in docs](https://docs.tact-lang.org/language/ref/strings#inttocoinsstring)
+
 ### How to get current time
 
 Use the `now()` method to obtain the current standard [Unix time](https://en.wikipedia.org/wiki/Unix_time).
