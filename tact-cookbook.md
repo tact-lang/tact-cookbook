@@ -7,11 +7,11 @@ Compared to the FunC Documentation, this article is more focused on everyday tas
 ## Basics
 ### How to send a message with a long text comment
 
-If we need to send a message with a long text comment, we should build a string that consist more than `127` chars. For this we can use the primivite type `StringBuilder` and it's methods `beginComment()` and `append`. Before sending, we should convert this string into the cell with `toCell()` method.
+If we need to send a message with a lengthy text comment, we should create a string that consists of more than `127` characters. To do this, we can utilize the `StringBuilder` primitive type and its methods called `beginComment()` and `append()`. Prior to sending, we should convert this string into a cell using the toCell() method.
 
 ```
 let comment: StringBuilder = beginComment();
-let longString = '...' // some string with amount of chars more than 127
+let longString = '...' // Some string with more than 127 characters.
 str_builder.append(longString);
 
 send(SendParameters{
