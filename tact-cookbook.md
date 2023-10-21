@@ -95,6 +95,31 @@ dump("The loop is over!");
 - [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
 - [Loops in Tact-By-Example](https://tact-by-example.org/04-loops)
 
+## Map
+
+```tact
+// Create empty map
+let m: map<Int, String> = emptyMap();
+
+// Add key/value to the map
+m.set(1, "a");
+
+// Get value by key from the map
+let first: String? = m.get(1);
+
+// Check key is exists
+if (first == null) {
+    // do something...
+} else {
+    // Cast value if key exists
+    let firstStr: String = first!!;
+    // do something...
+}
+```
+
+💡 Useful links
+- [Map type in docs](https://docs.tact-lang.org/language/guides/types#maps)
+
 ## Slice
 
 ### How to determine if slice is empty
