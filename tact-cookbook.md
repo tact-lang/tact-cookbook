@@ -180,15 +180,15 @@ let hasNoData: Bool = slice_with_data.dataEmpty(); // true
 ### How to determine if slices are equal
 
 ```tact
-fun areSlicesEqual(a: Slice, b: Slice) : Bool {
-        return a.hash() == b.hash();
+fun areSlicesEqual(a: Slice, b: Slice): Bool {
+    return a.hash() == b.hash();
 }
 
 let firstSlice: Slice = "A".asSlice();
 let secondSlice: Slice = "A".asSlice();
 
-let result: Bool = areSlicesEqual(firstSlice, secondSlice); // Returns `true`
-dump(result);
+let result: Bool = areSlicesEqual(firstSlice, secondSlice);
+dump(result) // true;
 ```
 
 💡 Useful links
@@ -296,36 +296,6 @@ while (!string.empty()) {                   // A loop until slice has bytes
 
 dump(number);
 ```
-
-### How to convert int to string
-
-```tact
-let number: Int = 261119911;
-let string: StringBuilder = beginString();
-let chars: map<Int, Int> = null;
-let digits: Int = 0;
-
-do {
-    let r: Int = number % 10;
-    number = number / 10;
-    chars.set(digits, r);
-    digits = digits + 1;
-} until (number == 0);
-
-while (digits > 0) {
-    digits = digits - 1;
-    let char: Int = chars.get(digits)!!;
-    string.append(char.toString());
-}
-
-dump(string.toString())
-```
-
-💡 Useful links
-- [`while()` in docs](https://docs.tact-lang.org/language/guides/statements#while-loop)
-- [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
-- [`loadUint()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceloaduint)
-- [`String.asSlice()` in docs](https://docs.tact-lang.org/language/ref/strings#stringasslice)
 
 ### How to convert int to string
 
