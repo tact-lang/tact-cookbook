@@ -400,6 +400,7 @@ send(SendParameters{
     body: longString.toCell(),
     bounce: true,
 });
+
 ```
 
 💡 Useful links
@@ -407,3 +408,46 @@ send(SendParameters{
 - ["Sending messages" in docs](https://docs.tact-lang.org/language/guides/send#send-message)
 - ["String builder" in docs](https://docs.tact-lang.org/language/guides/types#primitive-types)
 - ["Cell" in docs](https://docs.tact-lang.org/language/ref/cells)
+
+### How to calculate NFT item address by its index
+
+For Tact example, you should have the Tact code of the NFT item contract, placed in the same file. You can use the function as you wish, both inside and outside of a contract.
+
+For FunC example, you should have the code of item contract as a cell. The function can be used outside of a contract by changing `self.nftItemCode` with a preassigned `nftItemCode`.
+
+Tact:
+
+```tact
+
+get fun getNftItemInit(item_index: Int): StateInit {
+// Arguments for NftItem may vary, depending on contract
+    return initOf NftItem(collectionAddress, item_index, self.owner_address, self.collection_content);
+}
+
+let itemIndex: Int = 0; // put your index
+let itemInit: StateInit = self.getNftItemInit(itemIndex);
+let itemAddress: Address = contractAddress(nft_init);
+```
+
+FunC (may also vary depending on collection's deploy_item() function):
+
+```tact
+fun getNftItemInit(item_index: Int): StateInit {
+    let data: Cell = beginCell().storeUint(item_index,64).storeSlice(self.nFTContractAddress.asSlice()).endCell();
+    let itemInit: StateInit = StateInit{
+        data: data,
+        code: self.nftItemCode
+    }; 
+    return itemInit;
+}
+
+let itemIndex: Int = 0; // put your index
+let itemAddress: Address = contractAddress(self.getNftItemInit(itemIndex));
+```
+
+💡 Useful links
+
+- [`initOf()` in docs](https://docs.tact-lang.org/language/guides/statements#initof)
+- [`contractAddress()` in docs](https://docs.tact-lang.org/language/ref/common#contractaddress)
+- [Tact collection and item contracts example](https://github.com/howardpen9/nft-template-in-tact/blob/tutorial/sources/contract.tact)
+- [FunC collection and item contracts example](https://github.com/Cosmodude/TAP/tree/main/contracts)
