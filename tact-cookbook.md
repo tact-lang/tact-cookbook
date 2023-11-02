@@ -95,6 +95,31 @@ dump("The loop is over!");
 - [`random()` in docs](https://docs.tact-lang.org/language/ref/random#random)
 - [Loops in Tact-By-Example](https://tact-by-example.org/04-loops)
 
+## Map
+
+```tact
+// Create empty map
+let m: map<Int, String> = emptyMap();
+
+// Add key/value to the map
+m.set(1, "a");
+
+// Get value by key from the map
+let first: String? = m.get(1);
+
+// Check key is exists
+if (first == null) {
+    // do something...
+} else {
+    // Cast value if key exists
+    let firstStr: String = first!!;
+    // do something...
+}
+```
+
+💡 Useful links
+- [Map type in docs](https://docs.tact-lang.org/language/guides/types#maps)
+
 ## Slice
 
 ### How to determine if slice is empty
@@ -139,8 +164,36 @@ let slice_with_data: Slice = beginCell().
     storeUint(0, 1).
     asSlice(); // create a slice with data but without refs
 let refsCount: Int = slice_with_data.refs(); // 0
-let hasRefs: Bool = slice_with_data.refsEmpty(); // true
+let hasNoRefs: Bool = slice_with_data.refsEmpty(); // true
 ```
+
+### How to determine if a slice has no data (no bits, but may have refs)
+
+```tact
+let slice_with_data: Slice = beginCell().
+    storeRef(emptyCell()).
+    asSlice(); // create a slice with ref but without data
+let bitsCount: Int = slice_with_data.bits(); // 0
+let hasNoData: Bool = slice_with_data.dataEmpty(); // true
+```
+
+### How to determine if slices are equal
+
+```tact
+fun areSlicesEqual(a: Slice, b: Slice): Bool {
+    return a.hash() == b.hash();
+}
+
+let firstSlice: Slice = "A".asSlice();
+let secondSlice: Slice = "A".asSlice();
+
+let result: Bool = areSlicesEqual(firstSlice, secondSlice);
+dump(result) // true;
+```
+
+💡 Useful links
+
+- [`String.asSlice()` in docs](https://docs.tact-lang.org/language/ref/strings#stringasslice)
 
 ## Cell
 
@@ -244,11 +297,31 @@ while (!string.empty()) {                   // A loop until slice has bytes
 dump(number);
 ```
 
+### How to convert int to string
+
+```tact
+let number: Int = 261119911;
+
+// Converting the [number] to String
+let numberString: String = number.toString();
+
+// Converting the [number] to Float String
+// passed argument `3` is is a exponentiation parameter of expression 10^(-3) that will be used for computing float number. This parameter required to be `0 <= digits < 77`
+let floatString: String = number.toFloatString(3);
+
+// Converting the [number] as coins to human readable Strign
+let coinsString: String = number.toCoinsString();
+
+dump(numberString); // "261119911"
+dump(floatString); // "261119.911"
+dump(coinsString); // "0.261119911"
+```
+
 💡 Useful links
-- [`while()` in docs](https://docs.tact-lang.org/language/guides/statements#while-loop)
-- [`empty()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceempty)
-- [`loadUint()` in docs](https://docs.tact-lang.org/language/ref/cells#sliceloaduint)
-- [`String.asSlice()` in docs](https://docs.tact-lang.org/language/ref/strings#stringasslice)
+
+- [`Int.toString` in docs](https://docs.tact-lang.org/language/ref/strings#inttostring)
+- [`Int.toFloatString` in docs](https://docs.tact-lang.org/language/ref/strings#inttofloatstring)
+- [`Int.toCoinsString` in docs](https://docs.tact-lang.org/language/ref/strings#inttocoinsstring)
 
 ### How to get current time
 
@@ -311,15 +384,44 @@ nativeThrowUnless(39, number == 198);
 - [`throw()` in docs](https://docs.tact-lang.org/language/ref/advanced#throw)
 - [Errors in Tact-By-Example](https://tact-by-example.org/03-errors)
 
+### How to send a message with a long text comment
+
+If we need to send a message with a lengthy text comment, we should create a string that consists of more than `127` characters. To do this, we can utilize the `StringBuilder` primitive type and its methods called `beginComment()` and `append()`. Prior to sending, we should convert this string into a cell using the `toCell()` method.
+
+```
+let comment: StringBuilder = beginComment();
+let longString = '...' // Some string with more than 127 characters.
+str_builder.append(longString);
+
+send(SendParameters{
+    to: ctx.sender, 
+    value: 0, 
+    mode: SendIgnoreErrors,
+    body: longString.toCell(),
+    bounce: true,
+});
+
+```
+
+💡 Useful links
+
+- ["Sending messages" in docs](https://docs.tact-lang.org/language/guides/send#send-message)
+- ["String builder" in docs](https://docs.tact-lang.org/language/guides/types#primitive-types)
+- ["Cell" in docs](https://docs.tact-lang.org/language/ref/cells)
+
 ### How to calculate NFT item address by its index
-You should have Tact or FunC code of nftItem and collection.
+
+For Tact example, you should have the Tact code of the NFT item contract, placed in the same file. You can use the function as you wish, both inside and outside of a contract.
+
+For FunC example, you should have the code of item contract as a cell. The function can be used outside of a contract by changing `self.nftItemCode` with a preassigned `nftItemCode`.
 
 Tact:
+
 ```tact
 
 get fun getNftItemInit(item_index: Int): StateInit {
 // Arguments for NftItem may vary, depending on contract
-        return initOf NftItem(collectionAddress, item_index, self.owner_address, self.collection_content);
+    return initOf NftItem(collectionAddress, item_index, self.owner_address, self.collection_content);
 }
 
 let itemIndex: Int = 0; // put your index
@@ -327,25 +429,25 @@ let itemInit: StateInit = self.getNftItemInit(itemIndex);
 let itemAddress: Address = contractAddress(nft_init);
 ```
 
-FunC(may also vary depending on collection's deploy_item() function:
+FunC (may also vary depending on collection's deploy_item() function):
+
 ```tact
 fun getNftItemInit(item_index: Int): StateInit {
-        let data: Cell = beginCell().storeUint(item_index,64).storeSlice(self.nFTContractAddress.asSlice()).endCell();
-        let itemInit: StateInit = StateInit{
-            data: data,
-            code: self.nftItemCode
-        }; 
-        return itemInit;
-    }
+    let data: Cell = beginCell().storeUint(item_index,64).storeSlice(self.nFTContractAddress.asSlice()).endCell();
+    let itemInit: StateInit = StateInit{
+        data: data,
+        code: self.nftItemCode
+    }; 
+    return itemInit;
+}
+
 let itemIndex: Int = 0; // put your index
-let itemAddress: Address = contractAddress(self.getNftItemInit(itemIndex));           
+let itemAddress: Address = contractAddress(self.getNftItemInit(itemIndex));
 ```
 
 💡 Useful links
 
 - [`initOf()` in docs](https://docs.tact-lang.org/language/guides/statements#initof)
-- [`contractaddress()` in docs](https://docs.tact-lang.org/language/ref/common#contractaddress)
-- [ example Tact collection and item contracts on github](https://github.com/howardpen9/nft-template-in-tact/blob/tutorial/sources/contract.tact)
-- [ example Func collection and item contracts on github](https://github.com/Cosmodude/TAP/tree/main/contracts)
-
-
+- [`contractAddress()` in docs](https://docs.tact-lang.org/language/ref/common#contractaddress)
+- [Tact collection and item contracts example](https://github.com/howardpen9/nft-template-in-tact/blob/tutorial/sources/contract.tact)
+- [FunC collection and item contracts example](https://github.com/Cosmodude/TAP/tree/main/contracts)
